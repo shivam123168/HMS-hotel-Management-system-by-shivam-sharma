@@ -1,0 +1,181 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+}
+
+.navbar {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000c4;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.navbar .logo img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.navbar nav {
+    display: flex;
+    align-items: center;
+
+}
+
+.navbar nav li {
+    list-style: none;
+
+}
+
+.navbar nav li a {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    border: none;
+    padding: 3px 16px;
+    /* border: 2px solid white; */
+    color: white;
+    text-decoration: none;
+    /* margin: 0px 20px; */
+    font-size: 19px;
+    font-weight: bold;
+    box-shadow: inset #313030 0px 0px 0px 3px;
+    background-color: #fdd835;
+    border-radius: 25px;
+}
+
+.logo h3 {
+    font-size: 23px;
+    font-weight: bold;
+    color: white;
+
+}
+
+.logo h3 span {
+    color: #fdd835;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    background-image: url("../images/main_page.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: inherit
+}
+
+.container {
+    /* width: 80%;
+            max-width: 900px;
+            margin: 50px auto; */
+
+    background-color: #000000c4;
+    padding: 30px;
+    border-radius: 10px;
+    /* box-shadow: 0 0 15px rgb(0 0 0); */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section {
+    margin-bottom: 40px;
+}
+
+.section h2 {
+    background-color: #ffa500;
+    color: white;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    justify-content: center;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 40%;
+    display: flex;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.checkbox-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.menu-preview h3 {
+    margin-top: 30px;
+    color: #007bff;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.menu-item {
+    background-color: #f0f0f0;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-left: 5px solid #007bff;
+    border-radius: 5px;
+}
+
+.menu-item small {
+    color: #555;
+}
+
+#upi_fields,
+#card_fields,
+#wallet_fields {
+    display: none;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.image-input-row {
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 15px;
+    gap: 10px;
+}
+
+.image-input-row p {
+    font-size: larger;
+    margin: 0;
+    font-weight: 600;
+}
