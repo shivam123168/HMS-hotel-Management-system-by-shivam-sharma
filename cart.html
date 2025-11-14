@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        color: #ffffff;
+    }
+
+    .navbar {
+        width: 100%;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #000000c4;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .navbar .logo img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+    }
+
+    .navbar nav {
+        display: flex;
+        align-items: center;
+
+    }
+
+    .navbar nav li {
+        list-style: none;
+
+    }
+
+    .navbar nav li a {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        border: none;
+        padding: 3px 16px;
+        /* border: 2px solid white; */
+        color: white;
+        text-decoration: none;
+        /* margin: 0px 20px; */
+        font-size: 19px;
+        font-weight: bold;
+        box-shadow: inset #313030 0px 0px 0px 3px;
+        background-color: #fdd835;
+        border-radius: 25px;
+    }
+
+    .logo h3 {
+        font-size: 23px;
+        font-weight: bold;
+        color: white;
+
+    }
+
+    .logo h3 span {
+        color: #fdd835;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    body {
+        background-color: #f5f5f5;
+        font-family: Arial, sans-serif;
+        background-image: url("../images/main_page.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .cart-container {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 16px;
+        padding: 16px 16px;
+        max-width: 800px;
+        margin: 40px auto;
+        color: #fff;
+        box-shadow: 0 0 12px #ffffffc4;
+    }
+
+    #head-line {
+        display: flex;
+        justify-content: center;
+    }
+
+    #heading {
+        width: 87%;
+        /* display: inline-flex
+; */
+        margin: 10px auto;
+        text-align: center;
+    }
+
+#table-no-block {
+        font-weight: 700;
+        text-align: center;
+        margin: 14px 0px 1px 3px;
+        font-size: 18px;
+
+    }
+
+    .cart-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 24px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #222;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .cart-table th,
+    .cart-table td {
+        padding: 12px 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .cart-table th {
+        background: #fdd835;
+        color: #222;
+        font-weight: bold;
+    }
+
+    .remove-btn {
+        background: #e53935;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 6px 16px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .remove-btn:hover {
+        background: #b71c1c;
+    }
+
+    .checkout-btn {
+
+        background: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 32px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .checkout-btn:hover {
+        background: #388e3c;
+    }
+
+    .qty-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .qty-btn {
+        background: #fdd835;
+        color: #222;
+        border: none;
+        border-radius: 4px;
+        width: 28px;
+        height: 28px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .qty-btn:hover {
+        background: #ffe066;
+    }
+
+    .qty-input {
+        width: 36px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        background: #fff;
+        color: #222;
+        pointer-events: none;
+    }
+
+    .table-scroll {
+        border-radius: 10px;
+        max-height: 350px;
+        /* Set your desired height */
+        overflow-y: auto;
+        width: 100%;
+    }
+
+    .table-scroll1 {
+        padding: 10px;
+        border: 2px solid;
+        margin: 10px 0px;
+        border-radius: 10px;
+        max-height: 70px;
+        /* Set your desired height */
+        overflow-y: auto;
+        width: 60%;
+    }
+
+
+    /* Payment Section */
+    .payment-methods {
+        flex: 1;
+        border-radius: 12px;
+        padding: 24px 18px;
+        color: #fff;
+        min-width: 220px;
+    }
+
+    .payment-methods h2 {
+        text-align: center;
+        margin-top: 0;
+    }
+
+    /* .payment-methods input[type="text"] {
+        width: 70%;
+        padding: 6px;
+        border-radius: 6px;
+        border: none;
+        margin-top: 4px;
+    } */
+
+    .payment-methods ul {
+        margin: 8px 0 0 18px;
+        padding: 0;
+    }
+
+    .payment-methods label {
+        display: block;
+        margin: 0 0 8px 0;
+        font-size: 1rem;
+    }
+
+    .payment-methods .order-summary {
+        margin-bottom: 18px;
+    }
+
+    .payment-qr {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        padding: 24px 18px;
+        text-align: center;
+        min-width: 220px;
+        display: none;
+    }
+
+    .payment-border {
+        border-radius: 10px;
+        padding: 10px;
+        border: 2px solid;
+        margin: 10px 0px;
+        width: 60%;
+    }
+
+    .payment-qr img {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 12px;
+    }
+
+    .payment-qr h3 {
+        color: #222;
+        margin-bottom: 12px;
+    }
+
+    .payment-qr div {
+        color: #333;
+        font-size: 1rem;
+    }
+
+    .inner-alignment {
+        display: flex;
+        gap: 32px;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .done-back {
+        display: inline-flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 20px;
+
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+        /* .cart-container {
+            padding: 16px 4px;
+            max-width: 98vw;
+        } */
+
+        .payment-methods,
+        .payment-qr {
+            min-width: 140px;
+            padding: 12px 4px;
+        }
+
+        .payment-qr img {
+            width: 120px;
+            height: 120px;
+        }
+
+        .table-scroll {
+            max-height: 220px;
+        }
+
+        .table-scroll1 {
+            max-height: 50px;
+        }
+
+        /* .payment-methods input[type="text"] {
+            width: 95%;
+        } */
+    }
+
+    @media (max-width: 600px) {
+        /* .cart-container {
+            margin: 10px 0;
+            padding: 6px 0;
+        } */
+
+        .payment-methods,
+        .payment-qr {
+            padding: 8px 2px;
+        }
+
+        .payment-qr img {
+            width: 80px;
+            height: 80px;
+        }
+
+        /* .table-scroll {
+            max-height: 120px;
+        } */
+
+        .table-scroll1 {
+            max-height: 30px;
+        }
+    }
+</style>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <h3><span>H</span>TM</h3>
+            </div>
+            <nav>
+                <li><a href="main.html">Option</a></li>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="cart-container">
+
+            <div id="cart-table-block">
+                <div id="head-line">
+                    <span id="table-no-block" >
+
+                        Table No: <input type="number" id="table-no-input" min="1" style="width:60px;">
+                    </span>
+                    <h2 id="heading"> Your Cart</h2>
+                </div>
+                <div class="table-scroll">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Sr. No.</th>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Price (₹)</th>
+                                <th>Total (₹)</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Paneer Tikka</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>180</td>
+                                <td>360</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Butter Naan</td>
+                                <td>
+                                    <div class="qty-block">
+                                        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                                        <input type="text" value="2" class="qty-input" readonly>
+                                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                                    </div>
+                                </td>
+                                <td>40</td>
+                                <td>120</td>
+                                <td><button class="remove-btn">Remove</button></td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" style="text-align:right;"><strong>Grand Total:</strong></td>
+                                <td colspan="2"><strong>₹480</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+            </div>
+
+
+
+            <!-- -----------payment method------------------ -->
+            <div id="payment-block" style="display:none;">
+                <div class="inner-alignment">
+                    <!-- Payment Methods & Info -->
+                    <div class="payment-methods">
+                        <h2>Hotel Payment</h2>
+
+                        <div class="order-summary">
+                            <strong>Order Summary:</strong>
+                            <div class="table-scroll1">
+                                <ul>
+                                    <li>Paneer Tikka x2 - ₹360</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                                    <li>Butter Naan x2 - ₹80</li>
+                            </div>
+                            <!-- Add more items as needed -->
+                            </ul>
+                            <div><strong>Total: ₹480</strong></div>
+                        </div>
+                        <h3>Select Payment Method</h3>
+                        <div class="payment-border">
+                            <label><input type="radio" name="payment" value="cash" checked> Cash at Counter</label>
+                            <label><input type="radio" name="payment" value="online"> Online (UPI/QR)</label>
+                        </div>
+                        <div class="done-back">
+                            <button class="checkout-btn" id="done-btn">Done</button>
+                            <button class="checkout-btn" id="back-btn">Back</button>
+                        </div>
+                        <div>
+                            <strong>Note:</strong> Please confirm your payment at the hotel counter after completing
+                            online payment.
+                        </div>
+                    </div>
+                    <!-- QR Code Section -->
+                    <div class="payment-qr" id="payment-qr">
+                        <h3>Scan QR to Pay</h3>
+                        <img src="../images/your_qr_code.png" alt="QR Code">
+                        <div>
+                            <strong>UPI ID:</strong> hotelupi@bank<br>
+                            <span>After payment, please show the confirmation to the
+                                staff.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+
+        function changeQty(btn, delta) {
+            const input = btn.parentElement.querySelector('.qty-input');
+            let value = parseInt(input.value, 10) || 1;
+            value += delta;
+            if (value < 1) value = 1;
+            input.value = value;
+            // Optionally, update price/total here
+        }
+
+    </script>
+    <script>
+        function changeQty(btn, delta) {
+            const input = btn.parentElement.querySelector('.qty-input');
+            let value = parseInt(input.value, 10) || 1;
+            value += delta;
+            if (value < 1) value = 1;
+            input.value = value;
+            // Optionally, update price/total here
+        }
+
+        document.getElementById('checkout-btn').addEventListener('click', function () {
+            document.getElementById('cart-table-block').style.display = 'none';
+            document.getElementById('payment-block').style.display = 'block';
+        });
+
+        // Show/hide QR code based on payment method
+        document.querySelectorAll('input[name="payment"]').forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                if (this.value === 'online') {
+                    document.getElementById('payment-qr').style.display = 'block';
+                } else {
+                    document.getElementById('payment-qr').style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('back-btn').addEventListener('click', function () {
+            document.getElementById('payment-block').style.display = 'none';
+            document.getElementById('cart-table-block').style.display = 'block';
+        });
+
+        // Example: Go to customer.html when button is clicked
+        document.getElementById('done-btn').addEventListener('click', function () {
+            window.location.href = 'customer.html';
+        });
+
+        // When user presses Enter, save table number to localStorage and update display
+document.getElementById('table-no-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+        var tableNo = this.value.trim();
+        if (tableNo) {
+            localStorage.setItem('tableNo', tableNo); // Save to localStorage
+            var block = document.getElementById('table-no-block');
+            block.innerHTML = 'Table No: <strong>' + tableNo + '</strong>';
+        }
+    }
+});
+
+// On page load, check localStorage and show table number if set
+window.addEventListener('DOMContentLoaded', function () {
+    var tableNo = localStorage.getItem('tableNo');
+    if (tableNo) {
+        var block = document.getElementById('table-no-block');
+        block.innerHTML = 'Table No: <strong>' + tableNo + '</strong>';
+    }
+});
+
+    </script>
+</body>
+
+</html>
